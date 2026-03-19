@@ -79,8 +79,8 @@ export default function CustomerDashboard() {
                     style={{ transformStyle: 'preserve-3d' }}
                 >
                     <div style={{ transform: 'translateZ(20px)' }}>
-                        <h1 className="text-3xl font-extrabold text-white tracking-tight drop-shadow-md">Vault Access, <span className="text-indigo-400">{username}</span></h1>
-                        <p className="text-slate-300 text-sm mt-1 font-light">Explore integrated health components and manage your nodes.</p>
+                        <h1 className="text-3xl font-extrabold text-white tracking-tight drop-shadow-md">Customer Dashboard, <span className="text-indigo-400">{username}</span></h1>
+                        <p className="text-slate-300 text-sm mt-1 font-light">Browse available medicines and manage your past orders.</p>
                     </div>
                     
                     <div className="flex flex-wrap items-center gap-3" style={{ transform: 'translateZ(30px)' }}>
@@ -88,19 +88,19 @@ export default function CustomerDashboard() {
                             onClick={() => setActiveTab('shop')}
                             className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'shop' ? 'bg-indigo-600 text-white neon-glow' : 'bg-black/20 text-slate-300 hover:bg-black/40 border border-white/5'}`}
                         >
-                            Pharmacopoeia
+                            Products
                         </button>
                         <button 
                             onClick={() => setActiveTab('orders')}
                             className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'orders' ? 'bg-indigo-600 text-white neon-glow' : 'bg-black/20 text-slate-300 hover:bg-black/40 border border-white/5'}`}
                         >
-                            Acquisition Logs
+                            My Orders
                         </button>
                         <button 
                             onClick={handleLogout}
                             className="flex items-center gap-2 px-5 py-2.5 bg-red-500/10 border border-red-500/20 text-red-500 rounded-xl hover:bg-red-500/20 transition-colors text-sm font-bold ml-2 lg:ml-4"
                         >
-                            <LogOut className="w-4 h-4" /> Disconnect
+                            <LogOut className="w-4 h-4" /> Logout
                         </button>
                     </div>
                 </motion.div>
@@ -114,13 +114,13 @@ export default function CustomerDashboard() {
                     >
                         <div className="flex items-center justify-between">
                             <h2 className="text-2xl font-bold text-white flex items-center gap-3 bg-black/30 px-5 py-3 rounded-2xl backdrop-blur-md border border-white/10 shadow-lg">
-                                <Package className="w-6 h-6 text-indigo-400 drop-shadow-md" /> Core Synthetics
+                                <Package className="w-6 h-6 text-indigo-400 drop-shadow-md" /> Available Medicines
                             </h2>
                         </div>
                         
                         {products.length === 0 ? (
                             <div className="text-center p-12 glass-panel rounded-3xl text-slate-400 text-lg">
-                                Databanks empty. No nodes online.
+                                No products available.
                             </div>
                         ) : (
                             <motion.div 
@@ -155,11 +155,11 @@ export default function CustomerDashboard() {
                                         
                                         <div className="space-y-3 text-sm text-slate-400 mb-6 relative z-10" style={{ transform: 'translateZ(10px)' }}>
                                             <div className="flex justify-between border-b border-white/5 pb-2">
-                                                <span>Synthesized:</span>
+                                                <span>Mfg Date:</span>
                                                 <span className="text-slate-200 font-medium tracking-wide">{new Date(p.mfg).toLocaleDateString()}</span>
                                             </div>
                                             <div className="flex justify-between">
-                                                <span>Decay Date:</span>
+                                                <span>Exp Date:</span>
                                                 <span className="text-slate-200 font-medium tracking-wide">{new Date(p.exp).toLocaleDateString()}</span>
                                             </div>
                                         </div>
@@ -170,7 +170,7 @@ export default function CustomerDashboard() {
                                             style={{ transform: 'translateZ(30px)' }}
                                             className="w-full py-3 bg-white/5 hover:bg-indigo-600 text-white rounded-xl font-bold border border-white/10 hover:border-indigo-500 transition-all duration-300 flex items-center justify-center gap-2 relative z-10 hover:shadow-[0_0_20px_rgba(79,70,229,0.5)] group-hover:bg-indigo-600/80"
                                         >
-                                            <ShoppingBag className="w-5 h-5" /> Acquire Unit
+                                            <ShoppingBag className="w-5 h-5" /> Buy Now
                                         </motion.button>
                                     </motion.div>
                                 ))}
@@ -186,7 +186,7 @@ export default function CustomerDashboard() {
                         className="space-y-6 perspective-1000"
                     >
                         <h2 className="text-2xl font-bold text-white flex items-center gap-3 bg-black/30 px-5 py-3 rounded-2xl backdrop-blur-md border border-white/10 shadow-lg inline-flex">
-                            <ShoppingBag className="w-6 h-6 text-indigo-400" /> Transaction Ledger
+                            <ShoppingBag className="w-6 h-6 text-indigo-400" /> Order History
                         </h2>
                         <motion.div 
                             whileHover={{ translateZ: 10, rotateX: 1 }}
@@ -198,7 +198,7 @@ export default function CustomerDashboard() {
                                     <thead>
                                         <tr className="bg-black/40 text-slate-300 text-sm border-b border-white/10 uppercase tracking-wider font-semibold">
                                             <th className="p-5">Tx ID</th>
-                                            <th className="p-5">Node ID</th>
+                                            <th className="p-5">Product ID</th>
                                             <th className="p-5">Timestamp</th>
                                             <th className="p-5">Units</th>
                                             <th className="p-5">Value</th>

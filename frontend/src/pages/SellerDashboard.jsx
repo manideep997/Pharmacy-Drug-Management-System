@@ -57,8 +57,8 @@ export default function SellerDashboard() {
                     style={{ transformStyle: 'preserve-3d' }}
                 >
                     <div style={{ transform: 'translateZ(20px)' }}>
-                        <h1 className="text-3xl font-extrabold text-white tracking-tight drop-shadow-md">Provider Portal, <span className="text-purple-400">{username}</span></h1>
-                        <p className="text-slate-300 text-sm mt-1 font-light">Supply chain management & operations hub.</p>
+                        <h1 className="text-3xl font-extrabold text-white tracking-tight drop-shadow-md">Seller Dashboard, <span className="text-purple-400">{username}</span></h1>
+                        <p className="text-slate-300 text-sm mt-1 font-light">Manage inventory and track orders.</p>
                     </div>
                     
                     <div className="flex flex-wrap items-center gap-3" style={{ transform: 'translateZ(30px)' }}>
@@ -66,19 +66,19 @@ export default function SellerDashboard() {
                             onClick={() => setActiveTab('add')}
                             className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'add' ? 'bg-purple-600 text-white neon-glow' : 'bg-black/20 text-slate-300 hover:bg-black/40 border border-white/5'}`}
                         >
-                            Inject Node
+                            Add Product
                         </button>
                         <button 
                             onClick={() => setActiveTab('orders')}
                             className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'orders' ? 'bg-purple-600 text-white neon-glow' : 'bg-black/20 text-slate-300 hover:bg-black/40 border border-white/5'}`}
                         >
-                            Distribution Feed
+                            View Orders
                         </button>
                         <button 
                             onClick={handleLogout}
                             className="flex items-center gap-2 px-5 py-2.5 bg-red-500/10 border border-red-500/20 text-red-500 rounded-xl hover:bg-red-500/20 transition-colors text-sm font-bold ml-2 lg:ml-4"
                         >
-                            <LogOut className="w-4 h-4" /> Terminate Link
+                            <LogOut className="w-4 h-4" /> Logout
                         </button>
                     </div>
                 </motion.div>
@@ -94,13 +94,13 @@ export default function SellerDashboard() {
                      >
                         <div className="p-6 border-b border-white/5 flex items-center gap-3 bg-black/20" style={{ transform: 'translateZ(20px)' }}>
                             <PlusCircle className="w-6 h-6 text-purple-400" />
-                            <h2 className="text-2xl font-bold text-white">Synthesize New Product</h2>
+                            <h2 className="text-2xl font-bold text-white">Add New Product</h2>
                         </div>
                         
                         <form onSubmit={handleAddProduct} className="p-8 space-y-6" style={{ transform: 'translateZ(30px)' }}>
                             <div className="grid grid-cols-2 gap-6">
                                 <div className="col-span-2 sm:col-span-1">
-                                    <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide">Node Matrix ID</label>
+                                    <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide">Product ID</label>
                                     <input
                                         type="text" required
                                         value={productForm.pid} onChange={(e) => setProductForm({...productForm, pid: e.target.value})}
@@ -109,7 +109,7 @@ export default function SellerDashboard() {
                                     />
                                 </div>
                                 <div className="col-span-2 sm:col-span-1">
-                                    <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide">Valuation (₹)</label>
+                                    <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide">Price (₹)</label>
                                     <input
                                         type="number" required min="1"
                                         value={productForm.price} onChange={(e) => setProductForm({...productForm, price: e.target.value})}
@@ -120,7 +120,7 @@ export default function SellerDashboard() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide">Compound Identifier</label>
+                                <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide">Product Name</label>
                                 <input
                                     type="text" required
                                     value={productForm.pname} onChange={(e) => setProductForm({...productForm, pname: e.target.value})}
@@ -130,7 +130,7 @@ export default function SellerDashboard() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide">Synthesis Origin</label>
+                                <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide">Manufacturer</label>
                                 <input
                                     type="text" required
                                     value={productForm.manufacturer} onChange={(e) => setProductForm({...productForm, manufacturer: e.target.value})}
@@ -141,7 +141,7 @@ export default function SellerDashboard() {
 
                             <div className="grid grid-cols-2 gap-6">
                                 <div className="col-span-2 sm:col-span-1">
-                                    <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide">Creation Cycle</label>
+                                    <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide">Mfg Date</label>
                                     <input
                                         type="date" required
                                         value={productForm.mfg} onChange={(e) => setProductForm({...productForm, mfg: e.target.value})}
@@ -149,7 +149,7 @@ export default function SellerDashboard() {
                                     />
                                 </div>
                                 <div className="col-span-2 sm:col-span-1">
-                                    <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide">Decay Cycle</label>
+                                    <label className="block text-sm font-semibold text-slate-300 mb-2 tracking-wide">Exp Date</label>
                                     <input
                                         type="date" required
                                         value={productForm.exp} onChange={(e) => setProductForm({...productForm, exp: e.target.value})}
@@ -164,7 +164,7 @@ export default function SellerDashboard() {
                                 type="submit"
                                 className="w-full mt-4 py-4 px-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl neon-glow transition-all disabled:opacity-70"
                             >
-                                Publish to Network
+                                Add Product
                             </motion.button>
                         </form>
                      </motion.div>
@@ -176,7 +176,7 @@ export default function SellerDashboard() {
                         className="space-y-6 perspective-1000"
                     >
                         <h2 className="text-2xl font-bold text-white flex items-center gap-3 bg-black/30 px-5 py-3 rounded-2xl backdrop-blur-md border border-white/10 shadow-lg inline-flex">
-                            <ClipboardList className="w-6 h-6 text-purple-400" /> Network Flow
+                            <ClipboardList className="w-6 h-6 text-purple-400" /> Customer Orders
                         </h2>
                         <motion.div 
                             whileHover={{ translateZ: 10, rotateX: 1 }}
@@ -187,19 +187,19 @@ export default function SellerDashboard() {
                                 <table className="w-full text-left border-collapse min-w-[700px]">
                                     <thead>
                                         <tr className="bg-black/40 text-slate-300 text-sm border-b border-white/10 uppercase tracking-wider font-semibold">
-                                            <th className="p-5">Flow ID</th>
-                                            <th className="p-5">Node Reference</th>
-                                            <th className="p-5">Target UID</th>
+                                            <th className="p-5">Order ID</th>
+                                            <th className="p-5">Product ID</th>
+                                            <th className="p-5">Customer ID</th>
                                             <th className="p-5">Timestamp</th>
                                             <th className="p-5">Quantity</th>
-                                            <th className="p-5 text-right">Yield</th>
+                                            <th className="p-5 text-right">Price</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-white/5">
                                         {orders.length === 0 ? (
                                             <tr>
                                                 <td colSpan="6" className="p-10 text-center text-slate-400 text-lg">
-                                                    No flows established yet.
+                                                    No orders found.
                                                 </td>
                                             </tr>
                                         ) : (
